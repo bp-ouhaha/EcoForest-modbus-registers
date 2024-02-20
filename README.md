@@ -1,7 +1,7 @@
 # EcoForest-modbus-registers
 EcoForest Heatpumps modbus registers (ESPHome format and others)
 
-At first, the focus in on geothermal version. The documentation referred below contains also the ecoAIR versions, so this repository can be extended easily.
+At first, the focus will be on geothermal version. The documentation referred below contains also the ecoAIR versions, so this repository can be extended easily.
 
 The registers are described in heatpump-ecogeo.yaml (for EcoForest ecoGEO 1-6, 1-9, 3-12, 3-22 kW models).
 
