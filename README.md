@@ -28,3 +28,9 @@ uart:
 ```
 
 For this example, pin 16/17 are the UART pins used towards a MAX3485 board, to convert to RS485 (modbus RTU). Please connect the TX and RX of the ESP respectively to the RX and TX of that MAX3485 board.
+
+
+Other external references:
+- https://github.com/graememk/esphome-ecoforest/blob/main/esphome-ecoair.yaml
+- https://community.home-assistant.io/t/controlling-ecoforest-heatpumps-via-modbus/309968/49
+- [in Dutch] https://gathering.tweakers.net/forum/list_messages/1654510
