@@ -280,147 +280,147 @@ sensor:
   internal: True
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 1"
+  name: "Condensation Energy January"
   address: 5144
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 2"
+  name: "Condensation Energy February"
   address: 5145
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 3"
+  name: "Condensation Energy March"
   address: 5146
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 4"
+  name: "Condensation Energy April"
   address: 5147
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 5"
+  name: "Condensation Energy May"
   address: 5148
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 6"
+  name: "Condensation Energy June"
   address: 5149
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 7"
+  name: "Condensation Energy July"
   address: 5150
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 8"
+  name: "Condensation Energy August"
   address: 5151
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 9"
+  name: "Condensation Energy September"
   address: 5152
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 10"
+  name: "Condensation Energy October"
   address: 5153
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 11"
+  name: "Condensation Energy November"
   address: 5154
 
 - <<: *energy_anchor
-  name: "Condensation Energy Month 12"
+  name: "Condensation Energy December"
   address: 5155
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 1"
+  name: "Evaporation Energy January"
   address: 5156
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 2"
+  name: "Evaporation Energy February"
   address: 5157
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 3"
+  name: "Evaporation Energy March"
   address: 5158
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 4"
+  name: "Evaporation Energy April"
   address: 5159
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 5"
+  name: "Evaporation Energy May"
   address: 5160
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 6"
+  name: "Evaporation Energy June"
   address: 5161
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 7"
+  name: "Evaporation Energy July"
   address: 5162
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 8"
+  name: "Evaporation Energy August"
   address: 5163
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 9"
+  name: "Evaporation Energy September"
   address: 5164
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 10"
+  name: "Evaporation Energy October"
   address: 5165
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 11"
+  name: "Evaporation Energy November"
   address: 5166
 
 - <<: *energy_anchor
-  name: "Evaporation Energy Month 12"
+  name: "Evaporation Energy December"
   address: 5167
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 1"
+  name: "Electrical Consumption January"
   address: 5168
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 2"
+  name: "Electrical Consumption February"
   address: 5169
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 3"
+  name: "Electrical Consumption March"
   address: 5170
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 4"
+  name: "Electrical Consumption April"
   address: 5171
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 5"
+  name: "Electrical Consumption May"
   address: 5172
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 6"
+  name: "Electrical Consumption June"
   address: 5173
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 7"
+  name: "Electrical Consumption July"
   address: 5174
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 8"
+  name: "Electrical Consumption August"
   address: 5175
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 9"
+  name: "Electrical Consumption September"
   address: 5176
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 10"
+  name: "Electrical Consumption October"
   address: 5177
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 11"
+  name: "Electrical Consumption November"
   address: 5178
 
 - <<: *energy_anchor
-  name: "Electrical Consumption Month 12"
+  name: "Electrical Consumption December"
   address: 5179
 
 - <<: *power_anchor
