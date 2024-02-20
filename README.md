@@ -29,6 +29,10 @@ uart:
 
 For this example, pin 16/17 are the UART pins used towards a MAX3485 board, to convert to RS485 (modbus RTU). Please connect the TX and RX of the ESP respectively to the RX and TX of that MAX3485 board.
 
+Out of personal experience:
+- avoid using UART0 (GPIO0 and GPIO1) - even with logger/baudrate: 0.
+- I've tested it with ESP32-WROOM-32U, ESP8266 (Wemos D1), it works :-)
+
 
 Other external references:
 - https://github.com/graememk/esphome-ecoforest/blob/main/esphome-ecoair.yaml
