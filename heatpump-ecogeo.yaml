@@ -31,6 +31,7 @@ modbus_controller:
   modbus_controller_id: heatpump_modbus_controller
   value_type: S_WORD
   multiply: 10.0
+  step: 0.1
 
 .generic_sensor_div10: &generic_anchor_div10
   platform: modbus_controller
