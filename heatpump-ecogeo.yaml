@@ -463,6 +463,24 @@ sensor:
   accuracy_decimals: 0
   unit_of_measurement: "Starts"
 
+- <<: *generic_anchor
+  name: "Software version 1"
+  address: 5285
+  id: sw_version_1
+  internal: True
+
+- <<: *generic_anchor
+  name: "Software version 2"
+  address: 5286
+  id: sw_version_2
+  internal: True
+
+- <<: *generic_anchor
+  name: "Software version 3"
+  address: 5287
+  id: sw_version_3
+  internal: True
+
 text_sensor:
 - platform: template
   name: "Current Time"
@@ -477,6 +495,13 @@ text_sensor:
         .tm_year = 100 + int(id(current_year).state), // reference year 2000 instead of 1900.
       };
       strftime(str, sizeof(str), "%Y-%m-%d %H:%M", &now);
+      return std::string(str);
+
+- platform: template
+  name: "Software version"
+  lambda: |-
+      char str[20];
+      sprintf(str, "%d.%d.%d", id(sw_version_1).state, id(sw_version_2).state, id(sw_version_3).state);
       return std::string(str);
   
 
