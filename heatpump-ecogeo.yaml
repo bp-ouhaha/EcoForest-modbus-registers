@@ -1,3 +1,4 @@
+
 modbus:
   send_wait_time: 200ms
   uart_id: ${heatpump_uart_id}
@@ -181,8 +182,36 @@ sensor:
 #  address: 135
 #
 #- <<: *temperature_anchor
+#  name: "BUS Heating SG2 Setpoint"
+#  address: 136
+#
+#- <<: *temperature_anchor
+#  name: "BUS Heating SG3 Setpoint"
+#  address: 137
+#
+#- <<: *temperature_anchor
+#  name: "BUS Heating SG4 Setpoint"
+#  address: 138
+#
+#- <<: *temperature_anchor
 #  name: "BUS Cooling DG1 Setpoint"
 #  address: 139
+#
+#- <<: *temperature_anchor
+#  name: "BUS Cooling SG2 Setpoint"
+#  address: 140
+#
+#- <<: *temperature_anchor
+#  name: "BUS Cooling SG3 Setpoint"
+#  address: 141
+#
+#- <<: *temperature_anchor
+#  name: "BUS Cooling SG4 Setpoint"
+#  address: 142
+#
+#- <<: *temperature_anchor
+#  name: "BUS Pool Setpoint"
+#  address: 143
 
 - <<: *temperature_anchor
   name: "Start Temperature DHW"
@@ -438,8 +467,28 @@ sensor:
   # 0 - off, 1 - on
 
 - <<: *generic_anchor
+  name: "BUS Pool Demand"
+  address: 5223
+  # 0 - off, 1 - on
+
+- <<: *generic_anchor
   name: "BUS DG1 Demand"
   address: 5224
+  # 0 - off, 1 - on
+
+- <<: *generic_anchor
+  name: "BUS SG2 Demand"
+  address: 5225
+  # 0 - off, 1 - on
+
+- <<: *generic_anchor
+  name: "BUS SG3 Demand"
+  address: 5226
+  # 0 - off, 1 - on
+
+- <<: *generic_anchor
+  name: "BUS SG4 Demand"
+  address: 5227
   # 0 - off, 1 - on
 
 - <<: *generic_anchor
@@ -501,7 +550,7 @@ text_sensor:
   name: "Software version"
   lambda: |-
       char str[20];
-      sprintf(str, "%d.%d.%d", id(sw_version_1).state, id(sw_version_2).state, id(sw_version_3).state);
+      sprintf(str, "%d.%d.%d", int(id(sw_version_1).state), int(id(sw_version_2).state), int(id(sw_version_3).state));
       return std::string(str);
   
 
@@ -551,9 +600,66 @@ number:
   unit_of_measurement: "°C"
 
 - <<: *generic_number_mult10_anchor
+  name: "BUS Heating SG2 Setpoint"
+  address: 136
+  min_value: 20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
+  name: "BUS Heating SG3 Setpoint"
+  address: 137
+  min_value: 20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
+  name: "BUS Heating SG4 Setpoint"
+  address: 138
+  min_value: 20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
   name: "BUS Cooling DG1 Setpoint"
   address: 139
   min_value: 5
   max_value: 30
   device_class: temperature
   unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
+  name: "BUS Cooling SG2 Setpoint"
+  address: 140
+  min_value: 5
+  max_value: 30
+  device_class: temperature
+  unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
+  name: "BUS Cooling SG3 Setpoint"
+  address: 141
+  min_value: 5
+  max_value: 30
+  device_class: temperature
+  unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
+  name: "BUS Cooling SG4 Setpoint"
+  address: 142
+  min_value: 5
+  max_value: 30
+  device_class: temperature
+  unit_of_measurement: "°C"
+
+- <<: *generic_number_mult10_anchor
+  name: "BUS Pool Setpoint"
+  address: 143
+  min_value: 20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+
