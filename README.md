@@ -24,7 +24,8 @@ uart:
   stop_bits: 2
   parity: NONE
 
-<<: !include heatpump-ecogeo.yaml
+packages:
+  heatpump: !include heatpump-ecogeo.yaml
 ```
 
 For this example, pin 16/17 are the UART pins used towards a MAX3485 board, to convert to RS485 (modbus RTU). Please connect the TX and RX of the ESP respectively to the RX and TX of that MAX3485 board.
