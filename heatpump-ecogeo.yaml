@@ -2,14 +2,12 @@ modbus:
   send_wait_time: 200ms
   uart_id: ${heatpump_uart_id}
   id: heatpump_modbus_id
-  #disable_crc: True
 
 modbus_controller:
 - id: heatpump_modbus_controller
   address: ${heatpump_modbus_address}   ## address of the Modbus slave device on the bus
   modbus_id: heatpump_modbus_id
-  #setup_priority: -10
-  #update_interval: 5min
+  update_interval: ${heatpump_update_interval}
   command_throttle: 50ms
 
 
