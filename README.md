@@ -1,6 +1,12 @@
 # EcoForest-modbus-registers
 EcoForest Heatpumps modbus registers (ESPHome format and others)
 
+DISCLAIMERS:
+- use it at your own risk!
+- writing modbus registers bypasses a lot of security features (you act like in installer mode) - you CAN break your heatpump doing so, or wear it faster out. Be careful!
+- undocumented registers have been reverse-engineered - no warranty the description or behavior is correct. It's usually written in the YAML file next to the register
+- ranges for writable settings are often guessed
+
 At first, the focus will be on geothermal version. The documentation referred below contains also the ecoAIR versions, so this repository can be extended easily.
 
 The registers are described in heatpump-ecogeo.yaml (for EcoForest ecoGEO 1-6, 1-9, 3-12, 3-22 kW models).
