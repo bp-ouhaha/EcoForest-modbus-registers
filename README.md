@@ -65,6 +65,7 @@ packages:
 Out of personal experience:
 - avoid using UART0 (GPIO0 and GPIO1) - even with logger/baudrate: 0.
 - I've tested it with ESP32-WROOM-32U, ESP8266 (Wemos D1), it works :-)
+- on ESP8266, the RAM usage gets relatively high, which makes it harder to do updates OTA! I switched to ESP32 for this reason.
 
 
 Other external references:
