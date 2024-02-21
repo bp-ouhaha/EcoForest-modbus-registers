@@ -11,7 +11,7 @@ in your ESPHome node yaml, this example allows you to easily integrate if you ha
 
 ```
 substitutions:
-  ## this exact names will be used in heatpump-ecogeo.yaml
+  ## these exact names will be used in heatpump-ecogeo.yaml
   ## address of the Modbus slave device on the bus, default value is typically 17
   heatpump_modbus_address: "17"
   heatpump_uart_id: "modbus_uart"
@@ -34,7 +34,7 @@ For this example, pin 16/17 are the UART pins used towards a MAX3485 board, to c
 Alternatively, it is possible to directly integrate from GitHub:
 ```
 substitutions:
-  ## this exact names will be used in heatpump-ecogeo.yaml
+  ## these exact names will be used in heatpump-ecogeo.yaml
   ## address of the Modbus slave device on the bus, default value is typically 17
   heatpump_modbus_address: "17"
   heatpump_uart_id: "modbus_uart"
