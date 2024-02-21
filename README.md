@@ -7,7 +7,7 @@ The registers are described in heatpump-ecogeo.yaml (for EcoForest ecoGEO 1-6, 1
 
 See original source of information: https://www.docdroid.net/vecljSG/modbus-2021-en-v02-pdf#page=6
 
-in your ESPHome node yaml, this example allows you to easily integrate:
+in your ESPHome node yaml, this example allows you to easily integrate if you have a local copy of heatpump-ecogeo.yaml:
 
 ```
 substitutions:
@@ -28,6 +28,30 @@ uart:
 ```
 
 For this example, pin 16/17 are the UART pins used towards a MAX3485 board, to convert to RS485 (modbus RTU). Please connect the TX and RX of the ESP respectively to the RX and TX of that MAX3485 board.
+
+Alternatively, it is possible to directly integrate from GitHub:
+```
+substitutions:
+  ## address of the Modbus slave device on the bus, default value is typically 17
+  heatpump_modbus_address: "17"
+  ## this exact name will be used in heatpump-ecogeo.yaml
+  heatpump_uart_id: "modbus_uart"
+
+uart:
+  id: modbus_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 19200
+  stop_bits: 2
+  parity: NONE
+
+packages:
+  remote_package:
+    url: https://github.com/bp-ouhaha/EcoForest-modbus-registers
+    ref: main
+    file: heatpump-ecogeo.yaml
+```
+
 
 Out of personal experience:
 - avoid using UART0 (GPIO0 and GPIO1) - even with logger/baudrate: 0.
