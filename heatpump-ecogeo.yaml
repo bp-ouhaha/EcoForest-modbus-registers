@@ -1,4 +1,3 @@
-
 modbus:
   send_wait_time: 200ms
   uart_id: ${heatpump_uart_id}
@@ -14,27 +13,28 @@ modbus_controller:
   command_throttle: 50ms
 
 
-.generic_sensor: &generic_anchor
+.analog_sensor: &analog_anchor
   platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   register_type: read
   accuracy_decimals: 0
   value_type: S_WORD
 
-#.generic_output: &generic_output_anchor
-#  platform: modbus_controller
-#  modbus_controller_id: heatpump_modbus_controller
-#  register_type: holding
-#  value_type: S_WORD
+.integer_sensor: &integer_anchor
+  platform: modbus_controller
+  modbus_controller_id: heatpump_modbus_controller
+  register_type: read
+  accuracy_decimals: 0
+  value_type: S_WORD
 
-.generic_number: &generic_number_mult10_anchor
+.analog_number: &analog_number_mult10_anchor
   platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   value_type: S_WORD
   multiply: 10.0
   step: 0.1
 
-.generic_sensor_div10: &generic_anchor_div10
+.analog_sensor_div10: &analog_anchor_div10
   platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   register_type: read
@@ -43,7 +43,16 @@ modbus_controller:
   filters:
     - multiply: 0.1
 
-.temperature_sensor: &temperature_anchor
+.integer_sensor_div10: &integer_anchor_div10
+  platform: modbus_controller
+  modbus_controller_id: heatpump_modbus_controller
+  register_type: read
+  accuracy_decimals: 1
+  value_type: S_WORD
+  filters:
+    - multiply: 0.1
+
+.analog_temperature_sensor: &analog_temperature_anchor
 - platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   device_class: temperature
@@ -54,7 +63,16 @@ modbus_controller:
   filters:
     - multiply: 0.1
 
-.pressure_sensor: &pressure_anchor
+.integer_temperature_sensor: &integer_temperature_anchor
+- platform: modbus_controller
+  modbus_controller_id: heatpump_modbus_controller
+  device_class: temperature
+  register_type: read
+  unit_of_measurement: "°C"
+  accuracy_decimals: 0
+  value_type: S_WORD
+
+.analog_pressure_sensor: &analog_pressure_anchor
 - platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   device_class: pressure
@@ -65,7 +83,7 @@ modbus_controller:
   filters:
     - multiply: 0.1
 
-.power_sensor: &power_anchor
+.integer_power_sensor: &integer_power_anchor
 - platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   device_class: power
@@ -74,7 +92,7 @@ modbus_controller:
   accuracy_decimals: 0
   value_type: S_WORD
 
-.energy_sensor: &energy_anchor
+.integer_energy_sensor: &integer_energy_anchor
 - platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
   device_class: energy
@@ -84,169 +102,207 @@ modbus_controller:
   value_type: S_WORD
 
 sensor:
-- <<: *pressure_anchor
-  name: "Pressure Brine"
-  address: 13
-
-- <<: *pressure_anchor
-  name: "Pressure Heating"
-  address: 14
-
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "Brine Out"
   address: 1
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "Brine In"
   address: 2
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "Heating Out"
   address: 3
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "Heating In"
   address: 4
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "Compressor suction temperature"
   address: 5
 
-- <<: *pressure_anchor
+- <<: *analog_pressure_anchor
   name: "Compressor suction pressure"
   address: 6
 
-- <<: *pressure_anchor
+- <<: *analog_pressure_anchor
   name: "Compressor discharge pressure"
   address: 7
     
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "DHW Temperature"
   address: 8
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
   name: "Outside Temperature"
   address: 11
 
-- <<: *generic_anchor_div10
+- <<: *analog_pressure_anchor
+  name: "Pressure Brine"
+  address: 13
+
+- <<: *analog_pressure_anchor
+  name: "Pressure Heating"
+  address: 14
+
+- <<: *analog_temperature_anchor
+  name: "Brine Temperature Air Unit Outlet"
+  address: 29
+
+- <<: *analog_anchor_div10
   name: "COP"
   unit_of_measurement: "COP"
   address: 30
 
-- <<: *generic_anchor_div10
+- <<: *analog_anchor_div10
   name: "PF"
   unit_of_measurement: "PF"
   address: 31
 
-- <<: *temperature_anchor
-  name: "Condensation temperature"
-  address: 94
-
-## moved to 'number' below
-#- <<: *generic_anchor_div10
+## moved to 'number' below (R/W instead of R)
+#- <<: *analog_anchor_div10
 #  name: "Thermal Power DHW Min"
 #  address: 74
 #  unit_of_measurement: "%"
 #
-#- <<: *generic_anchor_div10
+#- <<: *analog_anchor_div10
 #  name: "Thermal Power DHW Max"
 #  address: 75
 #  unit_of_measurement: "%"
 #
-#- <<: *generic_anchor_div10
+#- <<: *analog_anchor_div10
 #  name: "Thermal Power Heating Min"
 #  address: 76
 #  unit_of_measurement: "%"
 #
-#- <<: *generic_anchor_div10
+#- <<: *analog_anchor_div10
 #  name: "Thermal Power Heating Max"
 #  address: 77
 #  unit_of_measurement: "%"
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
+  name: "Condensation temperature"
+  address: 94
+
+- <<: *analog_temperature_anchor
   name: "Superheat"
   address: 132
 
-- <<: *generic_anchor
+- <<: *analog_anchor
   name: "Expansion Valve Position"
   address: 133
   unit_of_measurement: "%"
 
-## moved to 'number' below
-#- <<: *temperature_anchor
+## moved to 'number' below (R/W instead of R)
+#- <<: *analog_temperature_anchor
 #  name: "BUS DHW Setpoint"
 #  address: 134
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Heating DG1 Setpoint"
 #  address: 135
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Heating SG2 Setpoint"
 #  address: 136
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Heating SG3 Setpoint"
 #  address: 137
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Heating SG4 Setpoint"
 #  address: 138
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Cooling DG1 Setpoint"
 #  address: 139
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Cooling SG2 Setpoint"
 #  address: 140
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Cooling SG3 Setpoint"
 #  address: 141
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Cooling SG4 Setpoint"
 #  address: 142
 #
-#- <<: *temperature_anchor
+#- <<: *analog_temperature_anchor
 #  name: "BUS Pool Setpoint"
 #  address: 143
 
-- <<: *temperature_anchor
+- <<: *analog_temperature_anchor
+  name: "Supply Temperature SG2"
+  address: 194
+
+- <<: *analog_temperature_anchor
+  name: "Supply Temperature SG3"
+  address: 195
+
+- <<: *analog_temperature_anchor
+  name: "Supply Temperature SG4"
+  address: 196
+  
+- <<: *analog_temperature_anchor
   name: "Start Temperature DHW"
   address: 198
   
-- <<: *generic_anchor_div10
+- <<: *analog_temperature_anchor
+  name: "Evaporation Temperature"
+  address: 199
+  
+- <<: *analog_temperature_anchor
+  name: "Heating Buffer Tank Temperature"
+  address: 200
+  
+- <<: *analog_temperature_anchor
+  name: "Cooling Buffer Tank Temperature"
+  address: 201
+  
+- <<: *analog_anchor_div10
   name: "EER"
   unit_of_measurement: "EER"
   address: 202
 
-- <<: *generic_anchor
+- <<: *analog_temperature_anchor
+  name: "Compressor Discharge Temperature"
+  address: 201
+  
+- <<: *integer_anchor
   name: "Compressor RPM"
   unit_of_measurement: "RPM"
   address: 5002
 
-- <<: *temperature_anchor
+- <<: *integer_temperature_anchor
   name: "Scroll Temperature"
-  filters:
-    - multiply: 1.0
   address: 5004
 
-- <<: *temperature_anchor
+- <<: *integer_temperature_anchor
   name: "Inverter Temperature"
-  filters:
-    - multiply: 1.0
   address: 5005
 
-- <<: *generic_anchor
+- <<: *integer_anchor_div10
+  name: "Production Pump"
+  address: 5033
+  unit_of_measurement: "%"
+
+- <<: *integer_anchor_div10
+  name: "Brine Pump"
+  address: 5034
+  unit_of_measurement: "%"
+
+- <<: *integer_anchor
   name: "Working Hours L"
   address: 5080
   internal: True
   id: working_hours_l
   value_type: U_WORD
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Working Hours H"
   address: 5081
   internal: True
@@ -260,245 +316,235 @@ sensor:
   accuracy_decimals: 0
   unit_of_measurement: "h"
 
-- <<: *generic_anchor_div10
-  name: "Production Pump"
-  address: 5033
-  unit_of_measurement: "%"
-
-- <<: *generic_anchor_div10
-  name: "Brine Pump"
-  address: 5034
-  unit_of_measurement: "%"
-
-- <<: *power_anchor
+- <<: *integer_power_anchor
   name: "Power Consumption"
   address: 5082
 
-- <<: *power_anchor
+- <<: *integer_power_anchor
   name: "Condensation Capacity"
   address: 5083
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Current Hour"
   address: 5093
   id: current_hour
   internal: True
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Current Minute"
   address: 5094
   id: current_minute
   internal: True
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Current Day"
   address: 5095
   id: current_day
   internal: True
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Current Month"
   address: 5096
   id: current_month
   internal: True
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Current Year"
   address: 5097
   id: current_year
   internal: True
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy January"
   address: 5144
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy February"
   address: 5145
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy March"
   address: 5146
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy April"
   address: 5147
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy May"
   address: 5148
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy June"
   address: 5149
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy July"
   address: 5150
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy August"
   address: 5151
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy September"
   address: 5152
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy October"
   address: 5153
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy November"
   address: 5154
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Condensation Energy December"
   address: 5155
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy January"
   address: 5156
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy February"
   address: 5157
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy March"
   address: 5158
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy April"
   address: 5159
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy May"
   address: 5160
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy June"
   address: 5161
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy July"
   address: 5162
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy August"
   address: 5163
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy September"
   address: 5164
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy October"
   address: 5165
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy November"
   address: 5166
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Evaporation Energy December"
   address: 5167
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption January"
   address: 5168
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption February"
   address: 5169
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption March"
   address: 5170
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption April"
   address: 5171
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption May"
   address: 5172
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption June"
   address: 5173
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption July"
   address: 5174
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption August"
   address: 5175
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption September"
   address: 5176
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption October"
   address: 5177
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption November"
   address: 5178
 
-- <<: *energy_anchor
+- <<: *integer_energy_anchor
   name: "Electrical Consumption December"
   address: 5179
 
-- <<: *power_anchor
+- <<: *integer_power_anchor
   name: "Evaporation Capacity"
   address: 5185
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "working program by BUS"
   address: 5221
   # 0 - mixed, 1 - heating, 2 - cooling, 3 - off
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "BUS DHW Demand"
   address: 5222
   # 0 - off, 1 - on
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "BUS Pool Demand"
   address: 5223
   # 0 - off, 1 - on
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "BUS DG1 Demand"
   address: 5224
   # 0 - off, 1 - on
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "BUS SG2 Demand"
   address: 5225
   # 0 - off, 1 - on
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "BUS SG3 Demand"
   address: 5226
   # 0 - off, 1 - on
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "BUS SG4 Demand"
   address: 5227
   # 0 - off, 1 - on
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Number Of Starts L"
   address: 5281
   id: starts_l
   internal: True
   value_type: U_WORD
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Number Of Starts H"
   address: 5282
   id: starts_h
@@ -512,19 +558,19 @@ sensor:
   accuracy_decimals: 0
   unit_of_measurement: "Starts"
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Software version 1"
   address: 5285
   id: sw_version_1
   internal: True
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Software version 2"
   address: 5286
   id: sw_version_2
   internal: True
 
-- <<: *generic_anchor
+- <<: *integer_anchor
   name: "Software version 3"
   address: 5287
   id: sw_version_3
@@ -555,35 +601,35 @@ text_sensor:
   
 
 number:
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "Thermal Power DHW Min"
   address: 74
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "Thermal Power DHW Max"
   address: 75
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "Thermal Power Heating Min"
   address: 76
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "Thermal Power Heating Max"
   address: 77
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS DHW Setpoint"
   address: 134
   min_value: 0
@@ -591,7 +637,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Heating DG1 Setpoint"
   address: 135
   min_value: 20
@@ -599,7 +645,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Heating SG2 Setpoint"
   address: 136
   min_value: 20
@@ -607,7 +653,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Heating SG3 Setpoint"
   address: 137
   min_value: 20
@@ -615,7 +661,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Heating SG4 Setpoint"
   address: 138
   min_value: 20
@@ -623,7 +669,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Cooling DG1 Setpoint"
   address: 139
   min_value: 5
@@ -631,7 +677,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Cooling SG2 Setpoint"
   address: 140
   min_value: 5
@@ -639,7 +685,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Cooling SG3 Setpoint"
   address: 141
   min_value: 5
@@ -647,7 +693,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Cooling SG4 Setpoint"
   address: 142
   min_value: 5
@@ -655,7 +701,7 @@ number:
   device_class: temperature
   unit_of_measurement: "°C"
 
-- <<: *generic_number_mult10_anchor
+- <<: *analog_number_mult10_anchor
   name: "BUS Pool Setpoint"
   address: 143
   min_value: 20
