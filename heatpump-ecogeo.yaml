@@ -42,6 +42,11 @@ modbus_controller:
   multiply: 10.0
   step: 0.1
 
+.integer_number: &integer_number_anchor
+  platform: modbus_controller
+  modbus_controller_id: heatpump_modbus_controller
+  value_type: S_WORD
+
 .analog_div10_sensor: &analog_div10_sensor_anchor
   platform: modbus_controller
   modbus_controller_id: heatpump_modbus_controller
@@ -168,27 +173,6 @@ sensor: &heatpump_sensors
   unit_of_measurement: "PF"
   address: 31
 
-## moved to 'number' below (R/W instead of R)
-#- <<: *analog_div10_sensor_anchor
-#  name: "Thermal Power DHW Min"
-#  address: 74
-#  unit_of_measurement: "%"
-#
-#- <<: *analog_div10_sensor_anchor
-#  name: "Thermal Power DHW Max"
-#  address: 75
-#  unit_of_measurement: "%"
-#
-#- <<: *analog_div10_sensor_anchor
-#  name: "Thermal Power Heating Min"
-#  address: 76
-#  unit_of_measurement: "%"
-#
-#- <<: *analog_div10_sensor_anchor
-#  name: "Thermal Power Heating Max"
-#  address: 77
-#  unit_of_measurement: "%"
-
 - <<: *analog_temperature_sensor_anchor
   name: "Condensation temperature"
   address: 94
@@ -201,47 +185,6 @@ sensor: &heatpump_sensors
   name: "Expansion Valve Position"
   address: 133
   unit_of_measurement: "%"
-
-## moved to 'number' below (R/W instead of R)
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS DHW Setpoint"
-#  address: 134
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Heating DG1 Setpoint"
-#  address: 135
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Heating SG2 Setpoint"
-#  address: 136
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Heating SG3 Setpoint"
-#  address: 137
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Heating SG4 Setpoint"
-#  address: 138
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Cooling DG1 Setpoint"
-#  address: 139
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Cooling SG2 Setpoint"
-#  address: 140
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Cooling SG3 Setpoint"
-#  address: 141
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Cooling SG4 Setpoint"
-#  address: 142
-#
-#- <<: *analog_temperature_sensor_anchor
-#  name: "BUS Pool Setpoint"
-#  address: 143
 
 - <<: *analog_temperature_sensor_anchor
   name: "Supply Temperature SG2"
@@ -278,7 +221,7 @@ sensor: &heatpump_sensors
 
 - <<: *analog_temperature_sensor_anchor
   name: "Compressor Discharge Temperature"
-  address: 201
+  address: 203
   
 - <<: *integer_sensor_anchor
   name: "Compressor RPM"
@@ -297,11 +240,13 @@ sensor: &heatpump_sensors
   name: "Production Pump"
   address: 5033
   unit_of_measurement: "%"
+  # undocumented register
 
 - <<: *integer_div10_sensor_anchor
   name: "Brine Pump"
   address: 5034
   unit_of_measurement: "%"
+  # undocumented register
 
 - <<: *integer_sensor_anchor
   name: "Working Hours L"
@@ -610,11 +555,75 @@ text_sensor: &heatpump_text_sensors
 
 number: &heatpump_numbers
 - <<: *analog_mult10_number_anchor
+  name: "Delta-T Start DHW"
+  address: 15
+  min_value: 0
+  max_value: 20
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "DHW Setpoint"
+  address: 17
+  min_value: 0
+  max_value: 80
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Min Allowed Brine Temp"
+  address: 24
+  min_value: -20
+  max_value: 20
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Heating Curve Min Production & Max Outside Temperature"
+  address: 34
+  min_value: -20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Heating Curve Min Outside Temperature"
+  address: 35
+  min_value: -20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Heating Curve Max Production Temperature"
+  address: 36
+  min_value: -20
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Heating Fixed Temperature"
+  address: 73
+  min_value: 0
+  max_value: 40
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
   name: "Thermal Power DHW Min"
   address: 74
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
+  # undocumented register
 
 - <<: *analog_mult10_number_anchor
   name: "Thermal Power DHW Max"
@@ -622,6 +631,7 @@ number: &heatpump_numbers
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
+  # undocumented register
 
 - <<: *analog_mult10_number_anchor
   name: "Thermal Power Heating Min"
@@ -629,6 +639,7 @@ number: &heatpump_numbers
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
+  # undocumented register
 
 - <<: *analog_mult10_number_anchor
   name: "Thermal Power Heating Max"
@@ -636,6 +647,24 @@ number: &heatpump_numbers
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
+  # undocumented register
+
+- <<: *analog_mult10_number_anchor
+  name: "Min Allowed Production Temp"
+  address: 87
+  min_value: -20
+  max_value: 20
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Production Pump Min"
+  address: 90
+  min_value: 0
+  max_value: 100
+  unit_of_measurement: "%"
+  # undocumented register
 
 - <<: *analog_mult10_number_anchor
   name: "BUS DHW Setpoint"
@@ -717,6 +746,31 @@ number: &heatpump_numbers
   device_class: temperature
   unit_of_measurement: "°C"
 
+- <<: *analog_mult10_number_anchor
+  name: "Delta-T Start Heating"
+  address: 154
+  min_value: 0
+  max_value: 20
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
+  name: "Max Allowed Brine Temp"
+  address: 161
+  min_value: -20
+  max_value: 20
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *integer_number_anchor
+  name: "Mode off(0)/on(1)/emergency(2)"
+  address: 5058
+  min_value: 0
+  max_value: 2
+  # undocumented register - range is guessed
+
 
 binary_sensor: &heatpump_binary_sensors
 - <<: *boolean_sensor_anchor
@@ -735,3 +789,28 @@ switch: &heatpump_switches
 - <<: *boolean_switch_anchor
   name: "control by BUS"
   address: 53
+
+#- <<: *boolean_switch_anchor
+#  name: "DHW remote by installer"
+#  address: 49
+#  # undocumented register
+
+#- <<: *boolean_switch_anchor
+#  name: "DHW enable by installer"
+#  address: 64
+#  # undocumented register
+
+- <<: *boolean_switch_anchor
+  name: "DHW enable"
+  address: 106
+  # undocumented register
+
+- <<: *boolean_switch_anchor
+  name: "DHW remote enable"
+  address: 122
+  # undocumented register
+
+- <<: *boolean_switch_anchor
+  name: "Control DG1 by fix_temp(0)/heat_curve(1)"
+  address: 118
+  # undocumented register
