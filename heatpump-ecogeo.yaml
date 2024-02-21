@@ -456,7 +456,7 @@ sensor: &heatpump_sensors
   address: 5185
 
 - <<: *integer_sensor_anchor
-  name: "working program by BUS"
+  name: "Working Program by BUS"
   address: 5221
   # 0 - mixed, 1 - heating, 2 - cooling, 3 - off
 
@@ -765,10 +765,11 @@ number: &heatpump_numbers
   # undocumented register - range is guessed
 
 - <<: *integer_number_anchor
-  name: "Mode off(0)/on(1)/emergency(2)"
+  name: "Mode"
   address: 5058
   min_value: 0
   max_value: 2
+  # 0 - off, 1 - on, 2 - emergency
   # undocumented register - range is guessed
 
 
@@ -801,16 +802,17 @@ switch: &heatpump_switches
 #  # undocumented register
 
 - <<: *boolean_switch_anchor
-  name: "DHW enable"
+  name: "DHW Enable"
   address: 106
   # undocumented register
 
 - <<: *boolean_switch_anchor
-  name: "DHW remote enable"
+  name: "DHW Remote Enable"
   address: 122
   # undocumented register
 
 - <<: *boolean_switch_anchor
-  name: "Control DG1 by fix_temp(0)/heat_curve(1)"
+  name: "Control DG1"
   address: 118
+  # 0 - fixed  temp, 1 - heating curve
   # undocumented register
