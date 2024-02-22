@@ -181,10 +181,11 @@ sensor: &heatpump_sensors
   name: "Superheat"
   address: 132
 
-- <<: *analog_div10_sensor_anchor
+- <<: *analog_sensor_anchor
   name: "Expansion Valve Position"
   address: 133
   unit_of_measurement: "%"
+  # poorly documented, should be analog_div10_sensor_anchor - but crosscheck with Th-Touch says it's not div10
 
 - <<: *analog_temperature_sensor_anchor
   name: "Supply Temperature SG2"
