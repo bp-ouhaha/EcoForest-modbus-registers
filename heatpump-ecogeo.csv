@@ -10,7 +10,7 @@ R,Analog,DHW Temperature,8,
 R,Analog,Outside Temperature,11,
 R,Analog,Pressure Brine,13,
 R,Analog,Pressure Heating,14,
-R/W,Analog,Delta-T Start DHW,15,range 0-20; undocumented register - range is guessed
+R/W,Analog,Delta-T Start DHW,15,range 0 - 20; undocumented register - range is guessed
 R/W,Analog,DHW Setpoint,17,range 0 - 80; undocumented register - range is guessed
 R/W,Analog,Min Allowed Brine Temp,24,range -20 - 20; undocumented register - range is guessed
 R,Analog,Brine Temperature Air Unit Outlet,29,
@@ -38,7 +38,7 @@ R,Coil,Summer,127,
 R,Coil,Winter,128,
 R,Analog,Superheat,132,
 R,Analog,Expansion Valve Position,133,poorly documented; crosscheck with Th-Touch says it's not divded by 10
-R/W,Analog,BUS DHW Setpoint,134,range 0 - 80
+R/W,Analog,BUS DHW Setpoint,134,range 0 - 80; range is guessed
 R/W,Analog,BUS Heating DG1 Setpoint,135,range 20 - 40; range is guessed
 R/W,Analog,BUS Heating SG2 Setpoint,136,range 20 - 40; range is guessed
 R/W,Analog,BUS Heating SG3 Setpoint,137,range 20 - 40; range is guessed
