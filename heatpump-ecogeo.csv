@@ -10,12 +10,46 @@ R,Analog,DHW Temperature,8,
 R,Analog,Outside Temperature,11,
 R,Analog,Pressure Brine,13,
 R,Analog,Pressure Heating,14,
+R/W,Analog,Delta-T Start DHW,15,range 0-20; undocumented register - range is guessed
+R/W,Analog,DHW Setpoint,17,range 0 - 80; undocumented register - range is guessed
+R/W,Analog,Min Allowed Brine Temp,24,range -20 - 20; undocumented register - range is guessed
 R,Analog,Brine Temperature Air Unit Outlet,29,
 R,Analog,COP,30,
 R,Analog,PF,31,
+R/W,Analog,Heating Curve Min Production & Max Outside Temperature,34,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,Heating Curve Min Outside Temperature,35,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,Heating Curve Max Production Temperature,36,range -20 - 40; undocumented register - range is guessed
+R/W,Coil,DHW remote by installer,49,undocumented register
+R,Coil,Alarm,50,
+R/W,Coil,control by BUS,53,
+R/W,Coil,DHW enable by installer,64,undocumented register
+R/W,Analog,Heating Fixed Temperature,73,range 0 - 40; undocumented register - range is guessed
+R/W,Analog,Thermal Power DHW Min,74,range 15 - 100; undocumented register
+R/W,Analog,Thermal Power DHW Max,75,range 15 - 100; undocumented register
+R/W,Analog,Thermal Power Heating Min,76,range 15 - 100; undocumented register
+R/W,Analog,Thermal Power Heating Max,77,range 15 - 100; undocumented register
+R/W,Analog,Min Allowed Production Temp,87,range -20 - 20; undocumented register - range is guessed
+R/W,Analog,Production Pump Min,90,range 0 - 100; undocumented register
 R,Analog,Condensation temperature,94,
+R/W,Coil,DHW Enable,106,undocumented register
+R/W,Coil,Control DG1,118,0 - fixed  temp; 1 - heating curve; undocumented register
+R/W,Coil,DHW Remote Enable,122,undocumented register
+R,Coil,Summer,127,
+R,Coil,Winter,128,
 R,Analog,Superheat,132,
 R,Analog,Expansion Valve Position,133,poorly documented; crosscheck with Th-Touch says it's not divded by 10
+R/W,Analog,BUS DHW Setpoint,134,range 0 - 80
+R/W,Analog,BUS Heating DG1 Setpoint,135,range 20 - 40; range is guessed
+R/W,Analog,BUS Heating SG2 Setpoint,136,range 20 - 40; range is guessed
+R/W,Analog,BUS Heating SG3 Setpoint,137,range 20 - 40; range is guessed
+R/W,Analog,BUS Heating SG4 Setpoint,138,range 20 - 40; range is guessed
+R/W,Analog,BUS Cooling DG1 Setpoint,139,range 5 - 30; range is guessed
+R/W,Analog,BUS Cooling SG2 Setpoint,140,range 5 - 30; range is guessed
+R/W,Analog,BUS Cooling SG3 Setpoint,141,range 5 - 30; range is guessed
+R/W,Analog,BUS Cooling SG4 Setpoint,142,range 5 - 30; range is guessed
+R/W,Analog,BUS Pool Setpoint,143,range 20 - 40; range is guessed
+R/W,Analog,Delta-T Start Heating,154,range 0 - 20; undocumented register - range is guessed
+R/W,Analog,Max Allowed Brine Temp,161,range -20 - 20; undocumented register - range is guessed
 R,Analog,Supply Temperature SG2,194,
 R,Analog,Supply Temperature SG3,195,
 R,Analog,Supply Temperature SG4,196,
@@ -30,6 +64,7 @@ R,Integer,Scroll Temperature,5004,doesn't work on EcoGEO+ 1-6 PRO
 R,Integer,Inverter Temperature,5005,
 R,Integer,Production Pump,5033,undocumented register
 R,Integer,Brine Pump,5034,undocumented register
+R/W,Integer,Mode,5058,range 0 - 2: 0 - off; 1 - on; 2 - emergency; undocumented register - range is guessed
 R,Integer,Working Hours L,5080,
 R,Integer,Working Hours H,5081,to multiply by 1000 for total with previous register
 R,Integer,Power Consumption,5082,
@@ -88,38 +123,3 @@ R,Integer,Number Of Starts H,5282,to multiply by 10000 for total with previous r
 R,Integer,Software version 1,5285,
 R,Integer,Software version 2,5286,
 R,Integer,Software version 3,5287,
-R/W,Analog,Delta-T Start DHW,15,range 0-20; undocumented register - range is guessed
-R/W,Analog,DHW Setpoint,17,range 0 - 80; undocumented register - range is guessed
-R/W,Analog,Min Allowed Brine Temp,24,range -20 - 20; undocumented register - range is guessed
-R/W,Analog,Heating Curve Min Production & Max Outside Temperature,34,range -20 - 40; undocumented register - range is guessed
-R/W,Analog,Heating Curve Min Outside Temperature,35,range -20 - 40; undocumented register - range is guessed
-R/W,Analog,Heating Curve Max Production Temperature,36,range -20 - 40; undocumented register - range is guessed
-R/W,Analog,Heating Fixed Temperature,73,range 0 - 40; undocumented register - range is guessed
-R/W,Analog,Thermal Power DHW Min,74,range 15 - 100; undocumented register
-R/W,Analog,Thermal Power DHW Max,75,range 15 - 100; undocumented register
-R/W,Analog,Thermal Power Heating Min,76,range 15 - 100; undocumented register
-R/W,Analog,Thermal Power Heating Max,77,range 15 - 100; undocumented register
-R/W,Analog,Min Allowed Production Temp,87,range -20 - 20; undocumented register - range is guessed
-R/W,Analog,Production Pump Min,90,range 0 - 100; undocumented register
-R/W,Analog,BUS DHW Setpoint,134,range 0 - 80
-R/W,Analog,BUS Heating DG1 Setpoint,135,range 20 - 40; range is guessed
-R/W,Analog,BUS Heating SG2 Setpoint,136,range 20 - 40; range is guessed
-R/W,Analog,BUS Heating SG3 Setpoint,137,range 20 - 40; range is guessed
-R/W,Analog,BUS Heating SG4 Setpoint,138,range 20 - 40; range is guessed
-R/W,Analog,BUS Cooling DG1 Setpoint,139,range 5 - 30; range is guessed
-R/W,Analog,BUS Cooling SG2 Setpoint,140,range 5 - 30; range is guessed
-R/W,Analog,BUS Cooling SG3 Setpoint,141,range 5 - 30; range is guessed
-R/W,Analog,BUS Cooling SG4 Setpoint,142,range 5 - 30; range is guessed
-R/W,Analog,BUS Pool Setpoint,143,range 20 - 40; range is guessed
-R/W,Analog,Delta-T Start Heating,154,range 0 - 20; undocumented register - range is guessed
-R/W,Analog,Max Allowed Brine Temp,161,range -20 - 20; undocumented register - range is guessed
-R/W,Integer,Mode,5058,range 0 - 2: 0 - off; 1 - on; 2 - emergency; undocumented register - range is guessed
-R,Coil,Alarm,50,
-R/W,Coil,control by BUS,53,
-R,Coil,Summer,127,
-R,Coil,Winter,128,
-R/W,Coil,DHW remote by installer,49,undocumented register
-R/W,Coil,DHW enable by installer,64,undocumented register
-R/W,Coil,DHW Enable,106,undocumented register
-R/W,Coil,DHW Remote Enable,122,undocumented register
-R/W,Coil,Control DG1,118,0 - fixed  temp; 1 - heating curve; undocumented register
