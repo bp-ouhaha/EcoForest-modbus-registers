@@ -32,50 +32,50 @@ R,Integer,Production Pump,5033,undocumented register
 R,Integer,Brine Pump,5034,undocumented register
 R,Integer,Working Hours L,5080,
 R,Integer,Working Hours H,5081,to multiply by 1000 for total with previous register
-R,Integer,Power Consumption,5082
-R,Integer,Condensation Capacity,5083
-R,Integer,Current Hour,5093
-R,Integer,Current Minute,5094
-R,Integer,Current Day,5095
-R,Integer,Current Month,5096
-R,Integer,Current Year,5097
-R,Integer,Condensation Energy January,5144
-R,Integer,Condensation Energy February,5145
-R,Integer,Condensation Energy March,5146
-R,Integer,Condensation Energy April,5147
-R,Integer,Condensation Energy May,5148
-R,Integer,Condensation Energy June,5149
-R,Integer,Condensation Energy July,5150
-R,Integer,Condensation Energy August,5151
-R,Integer,Condensation Energy September,5152
-R,Integer,Condensation Energy October,5153
-R,Integer,Condensation Energy November,5154
-R,Integer,Condensation Energy December,5155
-R,Integer,Evaporation Energy January,5156
-R,Integer,Evaporation Energy February,5157
-R,Integer,Evaporation Energy March,5158
-R,Integer,Evaporation Energy April,5159
-R,Integer,Evaporation Energy May,5160
-R,Integer,Evaporation Energy June,5161
-R,Integer,Evaporation Energy July,5162
-R,Integer,Evaporation Energy August,5163
-R,Integer,Evaporation Energy September,5164
-R,Integer,Evaporation Energy October,5165
-R,Integer,Evaporation Energy November,5166
-R,Integer,Evaporation Energy December,5167
-R,Integer,Electrical Consumption January,5168
-R,Integer,Electrical Consumption February,5169
-R,Integer,Electrical Consumption March,5170
-R,Integer,Electrical Consumption April,5171
-R,Integer,Electrical Consumption May,5172
-R,Integer,Electrical Consumption June,5173
-R,Integer,Electrical Consumption July,5174
-R,Integer,Electrical Consumption August,5175
-R,Integer,Electrical Consumption September,5176
-R,Integer,Electrical Consumption October,5177
-R,Integer,Electrical Consumption November,5178
-R,Integer,Electrical Consumption December,5179
-R,Integer,Evaporation Capacity,5185
+R,Integer,Power Consumption,5082,
+R,Integer,Condensation Capacity,5083,
+R,Integer,Current Hour,5093,
+R,Integer,Current Minute,5094,
+R,Integer,Current Day,5095,
+R,Integer,Current Month,5096,
+R,Integer,Current Year,5097,
+R,Integer,Condensation Energy January,5144,
+R,Integer,Condensation Energy February,5145,
+R,Integer,Condensation Energy March,5146,
+R,Integer,Condensation Energy April,5147,
+R,Integer,Condensation Energy May,5148,
+R,Integer,Condensation Energy June,5149,
+R,Integer,Condensation Energy July,5150,
+R,Integer,Condensation Energy August,5151,
+R,Integer,Condensation Energy September,5152,
+R,Integer,Condensation Energy October,5153,
+R,Integer,Condensation Energy November,5154,
+R,Integer,Condensation Energy December,5155,
+R,Integer,Evaporation Energy January,5156,
+R,Integer,Evaporation Energy February,5157,
+R,Integer,Evaporation Energy March,5158,
+R,Integer,Evaporation Energy April,5159,
+R,Integer,Evaporation Energy May,5160,
+R,Integer,Evaporation Energy June,5161,
+R,Integer,Evaporation Energy July,5162,
+R,Integer,Evaporation Energy August,5163,
+R,Integer,Evaporation Energy September,5164,
+R,Integer,Evaporation Energy October,5165,
+R,Integer,Evaporation Energy November,5166,
+R,Integer,Evaporation Energy December,5167,
+R,Integer,Electrical Consumption January,5168,
+R,Integer,Electrical Consumption February,5169,
+R,Integer,Electrical Consumption March,5170,
+R,Integer,Electrical Consumption April,5171,
+R,Integer,Electrical Consumption May,5172,
+R,Integer,Electrical Consumption June,5173,
+R,Integer,Electrical Consumption July,5174,
+R,Integer,Electrical Consumption August,5175,
+R,Integer,Electrical Consumption September,5176,
+R,Integer,Electrical Consumption October,5177,
+R,Integer,Electrical Consumption November,5178,
+R,Integer,Electrical Consumption December,5179,
+R,Integer,Evaporation Capacity,5185,
 R,Integer,Working Program by BUS,5221,0 - mixed; 1 - heating; 2 - cooling; 3 - off
 R,Integer,BUS DHW Demand,5222,0 - off; 1 - on
 R,Integer,BUS Pool Demand,5223,0 - off; 1 - on
@@ -83,11 +83,11 @@ R,Integer,BUS DG1 Demand,5224,0 - off; 1 - on
 R,Integer,BUS SG2 Demand,5225,0 - off; 1 - on
 R,Integer,BUS SG3 Demand,5226,0 - off; 1 - on
 R,Integer,BUS SG4 Demand,5227,0 - off; 1 - on
-R,Integer,Number Of Starts L,5281
+R,Integer,Number Of Starts L,5281,
 R,Integer,Number Of Starts H,5282,to multiply by 10000 for total with previous register
-R,Integer,Software version 1,5285
-R,Integer,Software version 2,5286
-R,Integer,Software version 3,5287
+R,Integer,Software version 1,5285,
+R,Integer,Software version 2,5286,
+R,Integer,Software version 3,5287,
 R/W,Analog,Delta-T Start DHW,15,range 0-20; undocumented register - range is guessed
 R/W,Analog,DHW Setpoint,17,range 0 - 80; undocumented register - range is guessed
 R/W,Analog,Min Allowed Brine Temp,24,range -20 - 20; undocumented register - range is guessed
@@ -114,10 +114,10 @@ R/W,Analog,BUS Pool Setpoint,143,range 20 - 40; range is guessed
 R/W,Analog,Delta-T Start Heating,154,range 0 - 20; undocumented register - range is guessed
 R/W,Analog,Max Allowed Brine Temp,161,range -20 - 20; undocumented register - range is guessed
 R/W,Integer,Mode,5058,range 0 - 2: 0 - off; 1 - on; 2 - emergency; undocumented register - range is guessed
-R,Coil,Alarm,50
-R/W,Coil,control by BUS,53
-R,Coil,Summer,127
-R,Coil,Winter,128
+R,Coil,Alarm,50,
+R/W,Coil,control by BUS,53,
+R,Coil,Summer,127,
+R,Coil,Winter,128,
 R/W,Coil,DHW remote by installer,49,undocumented register
 R/W,Coil,DHW enable by installer,64,undocumented register
 R/W,Coil,DHW Enable,106,undocumented register
