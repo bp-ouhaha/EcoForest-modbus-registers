@@ -187,8 +187,14 @@ sensor: &heatpump_sensors
   # undocumented register
 
 - <<: *analog_temperature_sensor_anchor
-  name: "Cooling SG3 Setpoint (with EVU signal)"
+  #name: "Cooling SG3 Setpoint (with EVU signal)"
+  name: "Cooling Buffer Temperature"
   address: 130
+  # undocumented register
+
+- <<: *analog_temperature_sensor_anchor
+  name: "Heating Buffer Temperature"
+  address: 131
   # undocumented register
 
 - <<: *analog_temperature_sensor_anchor

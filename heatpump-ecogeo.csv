@@ -31,7 +31,8 @@ R/W,Analog,Production Pump Min,90,range 0 - 100; undocumented register
 R/W,Analog,Production Pump Max,91,range 0 - 100; undocumented register
 R,Analog,Condensation temperature,94,
 R,Analog,Heating DG1 Setpoint,97,undocumented register
-R,Analog,Cooling SG3 Setpoint (with EVU-signal),130,undocumented register
+R,Analog,Cooling Buffer Temperature,130,undocumented register
+R,Analog,Heating Buffer Temperature,131,undocumented register
 R,Analog,Superheat,132,
 R,Analog,Expansion Valve Position,133,poorly documented; crosscheck with Th-Touch says it's not divded by 10
 R/W,Analog,BUS DHW Setpoint,134,range 0 - 80; range is guessed
