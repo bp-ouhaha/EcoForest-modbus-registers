@@ -12,6 +12,7 @@ R,Analog,Pressure Brine,13,
 R,Analog,Pressure Heating,14,
 R/W,Analog,Delta-T Start DHW,15,range 0 - 20; undocumented register - range is guessed
 R/W,Analog,DHW Setpoint,17,range 0 - 80; undocumented register - range is guessed
+R/W,Analog,Pool Heating Setpoint,19,range 0 - 80; undocumented register - range is guessed
 R/W,Analog,Min Allowed Brine Temp,24,range -20 - 20; undocumented register - range is guessed
 R,Analog,Brine Temperature Air Unit Outlet,29,
 R,Analog,COP,30,

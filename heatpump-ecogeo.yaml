@@ -593,6 +593,15 @@ number: &heatpump_numbers
   # undocumented register - range is guessed
 
 - <<: *analog_mult10_number_anchor
+  name: "Pool Heating Setpoint"
+  address: 19
+  min_value: 0
+  max_value: 80
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
   name: "Min Allowed Brine Temp"
   address: 24
   min_value: -20
