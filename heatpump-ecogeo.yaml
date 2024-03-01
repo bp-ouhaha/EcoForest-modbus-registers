@@ -174,8 +174,22 @@ sensor: &heatpump_sensors
   address: 31
 
 - <<: *analog_temperature_sensor_anchor
+  name: "Cooling Delta-T from Dewpoint"
+  address: 50
+
+- <<: *analog_temperature_sensor_anchor
   name: "Condensation temperature"
   address: 94
+
+- <<: *analog_temperature_sensor_anchor
+  name: "Heating DG1 Setpoint"
+  address: 97
+  # undocumented register
+
+- <<: *analog_temperature_sensor_anchor
+  name: "Cooling SG3 Setpoint (with EVU signal)"
+  address: 130
+  # undocumented register
 
 - <<: *analog_temperature_sensor_anchor
   name: "Superheat"
@@ -241,12 +255,17 @@ sensor: &heatpump_sensors
   name: "Production Pump"
   address: 5033
   unit_of_measurement: "%"
-  # undocumented register
+  # in 0.1%; undocumented register
 
 - <<: *integer_div10_sensor_anchor
   name: "Brine Pump"
   address: 5034
   unit_of_measurement: "%"
+  # in 0.1%; undocumented register
+
+- <<: *integer_sensor_anchor
+  name: "EVU signal"
+  address: 5066
   # undocumented register
 
 - <<: *integer_sensor_anchor
@@ -668,6 +687,14 @@ number: &heatpump_numbers
   # undocumented register
 
 - <<: *analog_mult10_number_anchor
+  name: "Production Pump Max"
+  address: 91
+  min_value: 0
+  max_value: 100
+  unit_of_measurement: "%"
+  # undocumented register
+
+- <<: *analog_mult10_number_anchor
   name: "BUS DHW Setpoint"
   address: 134
   min_value: 0
@@ -757,6 +784,15 @@ number: &heatpump_numbers
   # undocumented register - range is guessed
 
 - <<: *analog_mult10_number_anchor
+  name: "Delta-T Start Cooling"
+  address: 156
+  min_value: 0
+  max_value: 20
+  device_class: temperature
+  unit_of_measurement: "°C"
+  # undocumented register - range is guessed
+
+- <<: *analog_mult10_number_anchor
   name: "Max Allowed Brine Temp"
   address: 161
   min_value: -20
@@ -778,6 +814,8 @@ binary_sensor: &heatpump_binary_sensors
 - <<: *boolean_sensor_anchor
   name: "Alarm"
   address: 50
+  filter:
+    invert:
 
 - <<: *boolean_sensor_anchor
   name: "Summer"
