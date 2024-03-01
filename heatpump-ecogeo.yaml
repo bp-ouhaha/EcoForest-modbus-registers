@@ -823,7 +823,7 @@ binary_sensor: &heatpump_binary_sensors
 - <<: *boolean_sensor_anchor
   name: "Alarm"
   address: 50
-  filter:
+  filters:
     invert:
 
 - <<: *boolean_sensor_anchor
