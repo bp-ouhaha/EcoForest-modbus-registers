@@ -124,6 +124,7 @@ R,Integer,Software version 2,5286,
 R,Integer,Software version 3,5287,
 R,Coil,Alarm,50,0 - Alarm; 1 - No Alarm
 R/W,Coil,control by BUS,53,
+R,Coil,DHW Demand,58,undocumented register
 R/W,Coil,DHW enable by installer,64,undocumented register
 R/W,Coil,DHW remote by installer,49,undocumented register
 R/W,Coil,DHW Enable,106,undocumented register

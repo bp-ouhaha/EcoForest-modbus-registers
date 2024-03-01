@@ -833,6 +833,10 @@ binary_sensor: &heatpump_binary_sensors
     invert:
 
 - <<: *boolean_sensor_anchor
+  name: "DHW Demand"
+  address: 58
+
+- <<: *boolean_sensor_anchor
   name: "Summer"
   address: 127
 
