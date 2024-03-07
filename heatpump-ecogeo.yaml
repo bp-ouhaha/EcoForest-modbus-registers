@@ -653,7 +653,7 @@ number: &heatpump_numbers
   # undocumented register - range is guessed
 
 - <<: *analog_mult10_number_anchor
-  name: "Thermal Power DHW Min"
+  name: "DHW Min RPM"
   address: 74
   min_value: 15
   max_value: 100
@@ -661,28 +661,28 @@ number: &heatpump_numbers
   # undocumented register
 
 - <<: *analog_mult10_number_anchor
-  name: "Thermal Power DHW Max"
+  name: "DHW Max RPM"
   address: 75
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
-  # undocumented register
+  # [% of max RPM] undocumented register
 
 - <<: *analog_mult10_number_anchor
-  name: "Thermal Power Heating Min"
+  name: "Heating Min RPM"
   address: 76
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
-  # undocumented register
+  # [% of max RPM] undocumented register
 
 - <<: *analog_mult10_number_anchor
-  name: "Thermal Power Heating Max"
+  name: "Heating Max RPM"
   address: 77
   min_value: 15
   max_value: 100
   unit_of_measurement: "%"
-  # undocumented register
+  # [% of max RPM] undocumented register
 
 - <<: *analog_mult10_number_anchor
   name: "Min Allowed Production Temp"

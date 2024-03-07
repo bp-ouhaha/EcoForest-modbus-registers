@@ -22,10 +22,10 @@ R/W,Analog,Heating Curve Min Outside Temperature,35,range -20 - 40; undocumented
 R/W,Analog,Heating Curve Max Production Temperature,36,range -20 - 40; undocumented register - range is guessed
 R,Analog,Cooling Delta-T from Dewpoint,50,undocumented register
 R/W,Analog,Heating Fixed Temperature,73,range 0 - 40; undocumented register - range is guessed
-R/W,Analog,Thermal Power DHW Min,74,range 15 - 100; undocumented register
-R/W,Analog,Thermal Power DHW Max,75,range 15 - 100; undocumented register
-R/W,Analog,Thermal Power Heating Min,76,range 15 - 100; undocumented register
-R/W,Analog,Thermal Power Heating Max,77,range 15 - 100; undocumented register
+R/W,Analog,DHW Min RPM,74,range 15 - 100 [% of max RPM]; undocumented register
+R/W,Analog,DHW Max RPM,75,range 15 - 100 [% of max RPM]; undocumented register
+R/W,Analog,Heating Min RPM,76,range 15 - 100 [% of max RPM]; undocumented register
+R/W,Analog,Heating Max RPM,77,range 15 - 100 [% of max RPM]; undocumented register
 R/W,Analog,Min Allowed Production Temp,87,range -20 - 20; undocumented register - range is guessed
 R/W,Analog,Production Pump Min,90,range 0 - 100; undocumented register
 R/W,Analog,Production Pump Max,91,range 0 - 100; undocumented register
