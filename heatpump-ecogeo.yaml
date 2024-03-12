@@ -558,6 +558,7 @@ sensor: &heatpump_sensors
 text_sensor: &heatpump_text_sensors
 - platform: template
   name: "Current Time"
+  device_class: timestamp
   lambda: |-
       char str[20];
       time_t currTime;
@@ -568,7 +569,7 @@ text_sensor: &heatpump_text_sensors
         .tm_mon  = int(id(current_month).state) - 1, // counts from 1 to 12, while tm counts from 0 to 11.
         .tm_year = 100 + int(id(current_year).state), // reference year 2000 instead of 1900.
       };
-      strftime(str, sizeof(str), "%Y-%m-%d %H:%M", &now);
+      strftime(str, sizeof(str), "%Y-%m-%dT%H:%MZ", &now);
       return std::string(str);
 
 - platform: template
@@ -835,6 +836,12 @@ binary_sensor: &heatpump_binary_sensors
 - <<: *boolean_sensor_anchor
   name: "DHW Demand"
   address: 58
+  # undocumented register
+
+- <<: *boolean_sensor_anchor
+  name: "DG1 Demand"
+  address: 60
+  # undocumented register
 
 - <<: *boolean_sensor_anchor
   name: "Summer"
