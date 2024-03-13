@@ -13,14 +13,31 @@ R,Analog,Pressure Heating,14,
 R/W,Analog,Delta-T Start DHW,15,range 0 - 20; undocumented register - range is guessed
 R/W,Analog,DHW Setpoint,17,range 0 - 80; undocumented register - range is guessed
 R/W,Analog,Pool Heating Setpoint,19,range 0 - 80; undocumented register - range is guessed
+R/W,Analog,Production group 3 Current Temperature,20,undocumented register
+R/W,Analog,Production group 2 Current Temperature,21,undocumented register
+R/W,Analog,Production group 1 Current Temperature,22,undocumented register
 R/W,Analog,Min Allowed Brine Temp,24,range -20 - 20; undocumented register - range is guessed
 R,Analog,Brine Temperature Air Unit Outlet,29,
 R,Analog,COP,30,
 R,Analog,PF,31,
-R/W,Analog,Heating Curve Min Production & Max Outside Temperature,34,range -20 - 40; undocumented register - range is guessed
-R/W,Analog,Heating Curve Min Outside Temperature,35,range -20 - 40; undocumented register - range is guessed
-R/W,Analog,Heating Curve Max Production Temperature,36,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,DG1 Heating Curve Min Production & Max Outside Temperature,34,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,DG1 Heating Curve Min Outside Temperature,35,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,DG1 Heating Curve Max Production Temperature,36,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,SG2 Heating Curve Max Production Temperature,37,range -20 - 40; undocumented register - range is guessed
 R,Analog,Cooling Delta-T from Dewpoint,50,undocumented register
+R/W,Analog,DG1 fixed Cooling temperature,54,undocumented register
+R/W,Analog,SG2 fixed Heating temperature,60,undocumented register
+R/W,Analog,SG2 Heating Curve Min Outside Temperature,35,range -20 - 61; undocumented register - range is guessed
+R/W,Analog,SG2 Heating Curve Min Production & Max Outside Temperature,62,range -20 - 40; undocumented register - range is guessed
+R/W,Analog,DG1 Cooling curve top point,63, undocumented register
+R/W,Analog,DG1 Cooling curve min point,64, undocumented register
+R/W,Analog,DG1 Cooling curve outside min point,65, undocumented register
+R/W,Analog,DG1 Cooling curve outside feet point,66, undocumented register
+R/W,Analog,SG2 Cooling curve top point,67, undocumented register
+R/W,Analog,SG2 fixed Cooling temperature,68,undocumented register
+R/W,Analog,SG2 Cooling curve min point,69,undocumented register
+R/W,Analog,SG2 Cooling curve outside min point,70,undocumented register
+R/W,Analog,SG2 Cooling curve outside feet point,71,undocumented register
 R/W,Analog,Heating Fixed Temperature,73,range 0 - 40; undocumented register - range is guessed
 R/W,Analog,DHW Min RPM,74,range 15 - 100 [% of max RPM]; undocumented register
 R/W,Analog,DHW Max RPM,75,range 15 - 100 [% of max RPM]; undocumented register
@@ -31,6 +48,10 @@ R/W,Analog,Production Pump Min,90,range 0 - 100; undocumented register
 R/W,Analog,Production Pump Max,91,range 0 - 100; undocumented register
 R,Analog,Condensation temperature,94,
 R,Analog,Heating DG1 Setpoint,97,undocumented register
+R/W,Analog,SG3 fixed Heating temperature,105,undocumented register
+R/W,Analog,SG4 fixed Heating temperature,106,undocumented register
+R/W,Analog,SG3 fixed Cooling temperature,119,undocumented register
+R/W,Analog,SG4 fixed Cooling temperature,122,undocumented register
 R,Analog,Cooling Buffer Temperature,130,undocumented register
 R,Analog,Heating Buffer Temperature,131,undocumented register
 R,Analog,Superheat,132,
@@ -110,6 +131,8 @@ R,Integer,Electrical Consumption October,5177,
 R,Integer,Electrical Consumption November,5178,
 R,Integer,Electrical Consumption December,5179,
 R,Integer,Evaporation Capacity,5185,
+R,Integer,Electrical Power Consumption,5182,undocumented register
+R,Integer,Condensation capacity 2,5183,undocumented register
 R,Integer,Working Program by BUS,5221,0 - mixed; 1 - heating; 2 - cooling; 3 - off
 R,Integer,BUS DHW Demand,5222,0 - off; 1 - on
 R,Integer,BUS Pool Demand,5223,0 - off; 1 - on
@@ -122,14 +145,35 @@ R,Integer,Number Of Starts H,5282,to multiply by 10000 for total with previous r
 R,Integer,Software version 1,5285,
 R,Integer,Software version 2,5286,
 R,Integer,Software version 3,5287,
+R/W,Coil,SG3 heating following curve,29,undocumented register
+R/W,Coil,SG4 heating following curve,30,undocumented register
+R/W,Coil,SG3 cooling following curve,31,undocumented register
+R/W,Coil,SG4 cooling following curve,42,undocumented register
+R/W,Coil,DHW remote by installer,49,undocumented register
 R,Coil,Alarm,50,0 - Alarm; 1 - No Alarm
 R/W,Coil,control by BUS,53,
+R,Coil,SG2 Demand,57,undocumented register
 R,Coil,DHW Demand,58,undocumented register
 R,Coil,DG1 Demand,60,undocumented register
 R/W,Coil,DHW enable by installer,64,undocumented register
-R/W,Coil,DHW remote by installer,49,undocumented register
+R,Coil,DG1 cooling,66,undocumented register
+R,Coil,DG1 heating,73,undocumented register
 R/W,Coil,DHW Enable,106,undocumented register
-R/W,Coil,Control DG1,118,0 - fixed  temp; 1 - heating curve; undocumented register
+R/W,Coil,Control heating DG1,118,0 - fixed  temp; 1 - heating curve; undocumented register
+R/W,Coil,Control cooling DG1,119,0 - fixed  temp; 1 - cooling curve; undocumented register
+R/W,Coil,Control cooling SG2,120,0 - fixed  temp; 1 - cooling curve; undocumented register
 R/W,Coil,DHW Remote Enable,122,undocumented register
+R/W,Coil,Control heating SG2,125,0 - fixed  temp; 1 - cooling curve; undocumented register
 R,Coil,Summer,127,
 R,Coil,Winter,128,
+R/W,Coil,DG1 request on,134,undocumented register
+R/W,Coil,SG2 request on,136,undocumented register
+R/W,Coil,DG1 heating on,150,undocumented register
+R/W,Coil,SG2 heating on,151,undocumented register
+R/W,Coil,SG3 heating on,152,undocumented register
+R/W,Coil,SG4 heating on,153,undocumented register
+R/W,Coil,DG1 cooling on,163,undocumented register
+R/W,Coil,SG2 cooling on,164,undocumented register
+R/W,Coil,SG3 cooling on,165,undocumented register
+R/W,Coil,SG4 cooling on,166,undocumented register
+
